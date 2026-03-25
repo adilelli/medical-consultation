@@ -10,8 +10,7 @@ class UserRepository:
 
     async def create_user(self, user: UserCreate):
         db_user = User(
-            **user.model_dump(),
-            role=1
+            **user.model_dump()
         )
         self.db.add(db_user)
         await self.db.commit()
@@ -30,4 +29,4 @@ class UserRepository:
     
     async def get_user_by_id(self, id: str):
         result = await self.db.execute(select(User).where(User.id == id))
-        return result
+        return result.scalar_one_or_none()
