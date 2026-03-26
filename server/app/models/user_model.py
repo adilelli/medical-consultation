@@ -14,3 +14,4 @@ class User(Base):
 
     doctor_consultations = relationship("Consultation", foreign_keys="Consultation.doctor_id", back_populates="doctor")
     patient_consultations = relationship("Consultation", foreign_keys="Consultation.patient_id", back_populates="patient")
+    auth = relationship("Auth", uselist=False, back_populates="user", cascade="all, delete-orphan")
