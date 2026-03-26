@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 from app.api.consultation_router import router as consultation_router
 from app.api.diagnosis_router import router as diagnosis_router
 from app.api.user_router import router as user_router
+from app.api.auth_router import router as auth_router
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -31,6 +32,7 @@ app.add_middleware(
 app.include_router(user_router)
 app.include_router(consultation_router)
 app.include_router(diagnosis_router)
+app.include_router(auth_router)
 
 @app.get("/")
 def root():
