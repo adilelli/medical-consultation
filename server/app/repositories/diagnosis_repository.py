@@ -19,6 +19,10 @@ class DiagnosisRepository:
         result = await self.db.execute(select(Diagnosis))
         return result.scalars().all()
     
+    async def get_diagnosis_by_id(self, id: int):
+        result = await self.db.execute(select(Diagnosis).where(Diagnosis.id == id))
+        return result.scalar_one_or_none()
+    
 
     async def get_diagnosis_by_name(self, name:str):
         stmt = (select(Diagnosis).where(Diagnosis.description.ilike(f"%{name}%")))

@@ -9,9 +9,11 @@ class Consultation(Base):
     id = Column(Integer, primary_key=True, index=True)
     doctor_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     patient_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    diagnosis_id = Column(Integer, ForeignKey("diagnosis.id"), nullable=True)
 
     doctor = relationship("User", foreign_keys=[doctor_id], back_populates="doctor_consultations")
     patient = relationship("User", foreign_keys=[patient_id], back_populates="patient_consultations")
+    diagnosis = relationship("Diagnosis", foreign_keys=[diagnosis_id], back_populates="consultations")
 
     description = Column(String)
     created_date = Column(DateTime, server_default=func.now())

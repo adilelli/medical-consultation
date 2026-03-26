@@ -19,4 +19,5 @@ def get_diagnosis_service(db: Session = Depends(get_db)):
 def get_consultation_service(db: Session = Depends(get_db)):
     repo = ConsultationRepository(db)
     user = UserRepository(db)
-    return ConsultationService(repo, user)
+    diagnosis = DiagnosisRepository(db)
+    return ConsultationService(repo, user, diagnosis)
