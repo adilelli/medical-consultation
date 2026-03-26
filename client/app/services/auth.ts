@@ -7,6 +7,7 @@ export const auth = {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     }),
-  logout: () =>
-    apiFetch('/auth/logout', { method: 'POST' }),
+  // in the future
+  // logout: () =>
+  //   apiFetch('/auth/logout', { method: 'POST' }),
 };
