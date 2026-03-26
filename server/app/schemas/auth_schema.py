@@ -7,6 +7,9 @@ class AuthCreate(BaseModel):
     user_id: int
     hashed_password: str
 
+class LoginRequest(BaseModel):
+    email: str
+    password: str
 
 class AuthResponse(BaseModel):
     id: int
