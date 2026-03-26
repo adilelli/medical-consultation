@@ -13,3 +13,6 @@ class UserService:
 
     async def list_users(self):
         return await self.repo.get_users()
+    
+    async def list_users_by_role(self, role: str):
+        return await self.repo.get_users_by_role(role)

@@ -14,6 +14,9 @@ async def create_user(
 
 @router.get("/", response_model=list[UserResponse])
 async def get_users(
+    role: str | None = None,
     service: UserService = Depends(get_user_service)
 ):
+    if role:
+        return await service.list_users_by_role(role)
     return await service.list_users()

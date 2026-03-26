@@ -21,6 +21,10 @@ class UserRepository:
         result = await self.db.execute(select(User))
         return result.scalars().all()
     
+    async def get_users_by_role(self, role: str):
+        result = await self.db.execute(select(User).where(User.role == role))
+        return result.scalars().all()
+
     async def get_user_by_email(self, email: str):
         result = await self.db.execute(
             select(User).where(User.email == email)
