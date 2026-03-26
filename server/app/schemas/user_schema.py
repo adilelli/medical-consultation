@@ -1,5 +1,5 @@
 from enum import IntEnum
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import datetime
 
 class UserRole(IntEnum):
@@ -10,6 +10,7 @@ class UserCreate(BaseModel):
     email: str
     name: str
     role: UserRole
+    password: str = Field(..., min_length=8, max_length=20, pattern="^[a-zA-Z0-9]*$")
 
 
 class UserResponse(BaseModel):

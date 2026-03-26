@@ -10,7 +10,7 @@ class UserRepository:
 
     async def create_user(self, user: UserCreate):
         db_user = User(
-            **user.model_dump()
+            **user.model_dump(exclude={"password"})
         )
         self.db.add(db_user)
         await self.db.commit()
