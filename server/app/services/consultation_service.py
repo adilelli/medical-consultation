@@ -26,6 +26,7 @@ class ConsultationService:
 
         db_consultation.doctor = doctor
         db_consultation.patient = patient
+        db_consultation.diagnosis = diagnosis
 
         return db_consultation
 

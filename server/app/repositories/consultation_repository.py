@@ -17,7 +17,8 @@ class ConsultationRepository:
         return db_write
 
     async def get_consultation(self):
-        result = await self.db.execute(select(Consultation).options(selectinload(Consultation.doctor), selectinload(Consultation.patient)))
+        stmt = (select(Consultation).options(selectinload(Consultation.doctor), selectinload(Consultation.patient), selectinload(Consultation.diagnosis)))
+        result = await self.db.execute(stmt)
         return result.scalars().all()
     
     async def get_consultation_by_name(self, name: str):
@@ -27,9 +28,11 @@ class ConsultationRepository:
             select(Consultation)
             .join(Doctor, Consultation.doctor)
             .join(Patient, Consultation.patient)
+            .join(Consultation.diagnosis)
             .options(
                 selectinload(Consultation.doctor),
-                selectinload(Consultation.patient)
+                selectinload(Consultation.patient),
+                selectinload(Consultation.diagnosis)
             )
             .where(or_(Doctor.name.ilike(f"%{name}%"), Patient.name.ilike(f"%{name}%")))
         )
