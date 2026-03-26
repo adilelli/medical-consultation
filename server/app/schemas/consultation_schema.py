@@ -15,7 +15,7 @@ class UserSimple(BaseModel):
 
 class DiagnosisSimple(BaseModel):
     id: int
-    description: str
+    code: str
 
     model_config = ConfigDict(from_attributes=True)
 
