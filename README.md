@@ -29,4 +29,5 @@ Security Consideration
 
 Performance Consideration
 1) Preload all consultation data so that when debouncing is performed on empty search string, it will read from memory instead of refetching API.
+2) Index frequently queried column to improve db read speed from O(N) to O (log N) complexity.
 2) We don't need caching for as we only have 100 diagnostic codes. If we were planning to scale up to tens of thousands of codes, knowing that the data is relatively static wiht little concerns of stale diagnostic codes, consider caching server side to improve minimise database operation. 
